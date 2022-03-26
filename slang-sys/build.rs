@@ -51,11 +51,22 @@ fn main() {
     let path = Path::new(&env::var("OUT_DIR").unwrap()).join(filename);
     if !path.exists() {
         // Download release file
+        #[cfg(target_os = "windows")]
         std::process::Command::new("powershell")
             .arg("Invoke-WebRequest")
             .arg(SLANG_RELEASE.url)
             .arg("-OutFile")
             .arg(path.as_os_str())
+            .status()
+            .unwrap();
+
+        #[cfg(target_os = "linux")]
+        std::process::Command::new("curl")
+            .arg("--location")
+            .arg("-s")
+            .arg("-o")
+            .arg(path.as_os_str())
+            .arg(SLANG_RELEASE.url)
             .status()
             .unwrap();
     }
@@ -64,12 +75,22 @@ fn main() {
     let unzipped_path = Path::new(&env::var("OUT_DIR").unwrap()).join(dir_name);
     if !unzipped_path.exists() {
         // Unzip release file
+        #[cfg(target_os = "windows")]
         std::process::Command::new("powershell")
             .arg("Expand-Archive")
             .arg("-Force")
             .arg("-Path")
             .arg(path.as_os_str())
             .arg("-DestinationPath")
+            .arg(unzipped_path.as_os_str())
+            .status()
+            .unwrap();
+
+        #[cfg(target_os = "linux")]
+        std::process::Command::new("unzip")
+            .arg("-q")
+            .arg(path.as_os_str())
+            .arg("-d")
             .arg(unzipped_path.as_os_str())
             .status()
             .unwrap();

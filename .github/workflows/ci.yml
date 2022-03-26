@@ -1,6 +1,6 @@
 on: [push, pull_request]
 
-name: Generate
+name: Test builds
 
 jobs:
   build-sys:
@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         platform:
-          - ubuntu-latest
           - windows-latest
+          - ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
