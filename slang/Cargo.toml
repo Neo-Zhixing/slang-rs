@@ -1,14 +1,14 @@
 [package]
 name = "slang"
 description = "Safe Rust bindings for the Slang shader language compiler"
-version = "0.0.3"
+version = "0.1.0"
 authors = ["Michael Tang <tangmi@uw.edu>"]
 license = "MIT/Apache-2.0"
 documentation = "https://docs.rs/slang/0.0.3/"
 repository = "https://github.com/tangmi/slang-rs/"
 readme = "README.md"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-slang-sys = { path = "../slang-sys", version = "0.1" }
+slang-sys = { path = "../slang-sys", version = "0.23" }
 bitflags = "1"

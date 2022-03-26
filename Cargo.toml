@@ -3,5 +3,4 @@
 members = [
 	"slang",
 	"slang-sys",
-	"shaders",
 ]
