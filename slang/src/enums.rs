@@ -45,10 +45,10 @@ pub enum ContainerFormat {
 
 #[repr(i32)]
 pub enum PassThrough {
-    None = slang_sys::SLANG_PASS_THROUGH_NONE,
-    Fxc = slang_sys::SLANG_PASS_THROUGH_FXC,
-    Dxc = slang_sys::SLANG_PASS_THROUGH_DXC,
-    Glslang = slang_sys::SLANG_PASS_THROUGH_GLSLANG,
+    None = slang_sys::SlangPassThrough_SLANG_PASS_THROUGH_NONE,
+    Fxc = slang_sys::SlangPassThrough_SLANG_PASS_THROUGH_FXC,
+    Dxc = slang_sys::SlangPassThrough_SLANG_PASS_THROUGH_DXC,
+    Glslang = slang_sys::SlangPassThrough_SLANG_PASS_THROUGH_GLSLANG,
 }
 
 bitflags! {
@@ -83,10 +83,10 @@ pub enum LineDirectiveMode {
 
 #[repr(i32)]
 pub enum SourceLanguage {
-    Unknown = slang_sys::SLANG_SOURCE_LANGUAGE_UNKNOWN,
-    Slang = slang_sys::SLANG_SOURCE_LANGUAGE_SLANG,
-    Hlsl = slang_sys::SLANG_SOURCE_LANGUAGE_HLSL,
-    Glsl = slang_sys::SLANG_SOURCE_LANGUAGE_GLSL,
+    Unknown = slang_sys::SlangSourceLanguage_SLANG_SOURCE_LANGUAGE_UNKNOWN,
+    Slang = slang_sys::SlangSourceLanguage_SLANG_SOURCE_LANGUAGE_SLANG,
+    Hlsl = slang_sys::SlangSourceLanguage_SLANG_SOURCE_LANGUAGE_HLSL,
+    Glsl = slang_sys::SlangSourceLanguage_SLANG_SOURCE_LANGUAGE_GLSL,
 }
 
 #[repr(i32)]

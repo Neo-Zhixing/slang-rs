@@ -9,11 +9,4 @@ repository = "https://github.com/tangmi/slang-rs/"
 documentation = "https://docs.rs/slang-sys/0.1.3/"
 description = "FFI bindings to slang"
 readme = "README.md"
-edition = "2018"
-
-[build-dependencies]
-bindgen = "0.52"
-cfg-if = "0.1"
-curl = "0.4"
-url = "2"
-zip = "0.5"
+edition = "2021"
