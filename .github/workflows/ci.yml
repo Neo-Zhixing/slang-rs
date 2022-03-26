@@ -1,18 +1,29 @@
-name: Rust
+on: [push, pull_request]
 
-on: [push]
+name: Generate
 
 jobs:
-  build:
-    name: Test on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-
+  generate:
+    name: Generate
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      - uses: actions/checkout@v1
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Install bindgen
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: bindgen
+      - name: Run generator
+        run: ./slang-sys/generate.sh
+      - name: Format generated results
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: -p slang-sys
+      - name: Diff autogen result
+        run: git diff --quiet || (echo "::error::Generated files are different, please regenerate with the script!"; git diff; false)
